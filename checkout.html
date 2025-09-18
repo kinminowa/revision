@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="styles2.css">
+<link rel="stylesheet" href="styles3.css">
+<link rel="stylesheet" href="styles4.css">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/javanese-text" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kapakana&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kings&display=swap" rel="stylesheet">
+
+
+
+<title>Aureva</title>
+
+
+</head>
+<body>
+
+
+  <div class="top-header">
+  <div class="top-header-content">
+<a href="index.html"><span class="brand-name">Aureva</span></a>
+
+    <div class="top-header-links">
+      <a href="store.html">Find a store</a>
+      <span class="divider">|</span>
+      <a href="help.html">Help</a>
+      <span class="divider">|</span>
+      <a href="signin.html">Sign in</a>
+    </div>
+  </div>
+</div>
+
+  
+  
+<header class="mobile-header">
+  <div class="mobile-top">
+    <a href="index.html" class="mobile-brand">Aureva</a>
+    <div class="mobile-icons">
+      <img src="profile-icon.svg" alt="Profile" class="icon">
+      <a href="cart.html">
+        <img src="bag-icon.svg" alt="Bag" class="icon">
+      </a>
+      <button id="menuBtn" class="menu-btn">☰</button>
+    </div>
+  </div>
+</header>
+
+
+<nav id="mobileSidebar" class="mobile-sidebar">
+  <ul>
+    <!-- Home -->
+    <li><a href="index.html">Home</a></li>
+
+    <!-- Featured -->
+    <li>
+      <a href="#" class="submenu-toggle">Featured <span class="arrow">></span></a>
+      <ul class="submenu">
+<li><a href="featured.html?cat=new arrival">New Arrivals</a></li>
+<li><a href="featured.html?cat=best seller">Best Sellers</a></li>
+<li><a href="featured.html?cat=limited edition">Limited Edition</a></li>
+<li><a href="featured.html?cat=sale">Sale / Clearance</a></li>
+      </ul>
+    </li>
+
+    <!-- Shoes -->
+    <li>
+      <a href="#" class="submenu-toggle">Shoes <span class="arrow">></span></a>
+      <ul class="submenu">
+<li><a href="shoes.html?cat=all">All Shoes</a></li>
+<li><a href="shoes.html?cat=sneakers">Sneakers</a></li>
+<li><a href="shoes.html?cat=heels-pumps">Heels & Pumps</a></li>
+<li><a href="shoes.html?cat=flats-sandals">Flats & Sandals</a></li>
+<li><a href="shoes.html?cat=boots">Boots</a></li>
+<li><a href="shoes.html?cat=sports-active">Sports & Active</a></li>
+      </ul>
+    </li>
+
+    <!-- Clothing -->
+    <li>
+      <a href="#" class="submenu-toggle">Clothing <span class="arrow">></span></a>
+      <ul class="submenu" id="mobileCategoryFilters">
+             <li> <a href="allclothing.html?cat=all">All Clothing</a></li>
+ <li> <a href="allclothing.html?cat=tops">Tops</a></li>
+ <li> <a href="allclothing.html?cat=dresses">Dresses</a></li>
+ <li> <a href="allclothing.html?cat=bottoms">Bottoms</a></li>
+  <li> <a href="allclothing.html?cat=outerwear">Outerwear & Jackets</a></li>
+  <li> <a href="allclothing.html?cat=loungewear">Loungewear</a></li>
+  <li><a href="allclothing.html?cat=sets">Sets & Co-ords</a></li>
+      </ul>
+    </li>
+
+    <!-- Accessories -->
+    <li>
+      <a href="#" class="submenu-toggle">Accessories <span class="arrow">></span></a>
+      <ul class="submenu">
+      <li><a href="accessoriess.html">All Accessories</a></li>
+      <li><a href="accessoriess.html?cat=bags-purses">Bags & Purses</a></li>
+      <li><a href="accessoriess.html?cat=jewelry">Jewelry</a></li>
+      <li><a href="accessoriess.html?cat=belts">Belts</a></li>
+      <li><a href="accessoriess.html?cat=hats-caps">Hats & Caps</a></li>
+      <li><a href="accessoriess.html?cat=scarves">Scarves</a></li>
+      <li><a href="accessoriess.html?cat=extras">Extras</a></li>
+      </ul>
+    </li>
+  </ul>
+
+
+
+  <!-- Sidebar Extra Content -->
+  <div class="sidebar-extra">
+    <h2 class="sidebar-title">Aureva</h2>
+    <p class="sidebar-text">
+      Become an Aureva member to unlock more fashion inspiration and style tips, helping you dress with confidence and elevate your look.
+    </p>
+    <button class="sidebar-btn">Sign In</button>
+
+
+  </div>
+
+</nav>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const mobileSidebar = document.getElementById('mobileSidebar');
+
+// Toggle main sidebar
+menuBtn.addEventListener('click', () => {
+  mobileSidebar.classList.toggle('open');
+});
+
+// Toggle submenus
+const submenuToggles = document.querySelectorAll('.submenu-toggle');
+submenuToggles.forEach(toggle => {
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    const submenu = this.nextElementSibling;
+    if (submenu) {
+      submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  });
+});
+
+// ✅ Filter logic for accessories.html
+document.addEventListener('DOMContentLoaded', function () {
+  const filters = document.querySelectorAll('#categoryFilters li'); // desktop
+  const items = document.querySelectorAll('.products .product-item');
+  const header = document.querySelector('.filters h2');
+
+  // Mobile submenu items
+  const mobileSubmenuItems = document.querySelectorAll('.submenu li[data-cat]');
+  const mobileHeader = document.querySelector('#mobileSidebar h2');
+
+  // Mapping for label names
+  const labelMap = {
+    'all': 'All Accessories',
+    'bags-purses': 'Bags & Purses',
+    'jewelry': 'Jewelry',
+    'belts': 'Belts',
+    'hats-caps': 'Hats & Caps',
+    'scarves': 'Scarves',
+    'extras': 'Extras'
+  };
+
+  function applyFilter(cat, source = 'desktop') {
+    items.forEach(item => {
+      const match = (cat === 'all') || (item.dataset.category === cat);
+      item.style.display = match ? '' : 'none';
+    });
+
+    const label = labelMap[cat] || cat;
+
+    if (source === 'desktop') {
+      header.textContent = label;
+    } else if (mobileHeader) {
+      mobileHeader.textContent = label;
+    }
+  }
+
+  // Desktop clicks
+  filters.forEach(li => {
+    li.style.cursor = 'pointer';
+    li.addEventListener('click', () => {
+      filters.forEach(el => el.classList.remove('active'));
+      li.classList.add('active');
+      applyFilter(li.dataset.cat, 'desktop');
+    });
+  });
+
+  // Mobile submenu clicks
+  mobileSubmenuItems.forEach(li => {
+    li.style.cursor = 'pointer';
+    const link = li.querySelector('a');
+    if (link) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // prevents reload
+        mobileSubmenuItems.forEach(el => el.classList.remove('active'));
+        li.classList.add('active');
+
+        applyFilter(li.dataset.cat, 'mobile');
+
+        if (mobileSidebar) mobileSidebar.classList.remove('open'); // close sidebar
+      });
+    }
+  });
+
+  // Apply filter from URL query (e.g., accessories.html?cat=bags-purses)
+  const params = new URLSearchParams(window.location.search);
+  const categoryFromUrl = params.get('cat');
+  if (categoryFromUrl) {
+    const liDesktop = Array.from(filters).find(el => el.dataset.cat === categoryFromUrl);
+    const liMobile = Array.from(mobileSubmenuItems).find(el => el.dataset.cat === categoryFromUrl);
+
+    if (liDesktop) {
+      filters.forEach(el => el.classList.remove('active'));
+      liDesktop.classList.add('active');
+    }
+    if (liMobile) {
+      mobileSubmenuItems.forEach(el => el.classList.remove('active'));
+      liMobile.classList.add('active');
+    }
+
+    applyFilter(categoryFromUrl, 'desktop');
+  } else {
+    // Default: show all accessories
+    applyFilter('all', 'desktop');
+  }
+});
+</script>
+
+<section class="checkout-container">
+  <!-- LEFT SIDE -->
+  <div class="checkout-left">
+
+  <h2>Contact Information</h2>
+      <input type="email" placeholder="Email" class="input-box">
+
+      <p class="join-us-text">
+  Join us by signing up on <span class="brand-name">Aureva!</span>
+</p>
+
+      <input type="text" placeholder="First Name" class="input-box">
+      <input type="text" placeholder="Last Name" class="input-box">
+<!-- 📌 Address + ZIP Code Row -->
+<div class="form-row-address">
+  <input type="text" id="fullAddress" placeholder="Street Address (House No., Street Name)" class="input-box address-input" required>
+  <input type="text" id="zipCode" placeholder="ZIP Code" class="input-box zip-input" maxlength="4" required>
+</div>
+<p id="addressError" class="error-message">Please enter a valid address (at least 10 characters).</p>
+<p id="zipError" class="error-message">Please enter a valid 4-digit ZIP code.</p>
+
+<style>
+  .error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    margin: 4px 0 10px;
+  }
+  .input-box.invalid {
+    border: 1px solid red;
+    background-color: #ffe6e6;
+  }
+</style>
+
+<script>
+const fullAddress = document.getElementById("fullAddress");
+const zipCode = document.getElementById("zipCode");
+const addressError = document.getElementById("addressError");
+const zipError = document.getElementById("zipError");
+
+function validateAddress() {
+  if (fullAddress.value.trim().length < 10) {
+    fullAddress.classList.add("invalid");
+    addressError.style.display = "block";
+    return false;
+  } else {
+    fullAddress.classList.remove("invalid");
+    addressError.style.display = "none";
+    return true;
+  }
+}
+
+function validateZip() {
+  const zipPattern = /^\d{4}$/; // 4 digits only
+  if (!zipPattern.test(zipCode.value.trim())) {
+    zipCode.classList.add("invalid");
+    zipError.style.display = "block";
+    return false;
+  } else {
+    zipCode.classList.remove("invalid");
+    zipError.style.display = "none";
+    return true;
+  }
+}
+
+// Validate on blur (when leaving the input)
+fullAddress.addEventListener("blur", validateAddress);
+zipCode.addEventListener("blur", validateZip);
+
+// (Optional) validate live as user types
+fullAddress.addEventListener("input", validateAddress);
+zipCode.addEventListener("input", validateZip);
+</script>
+
+
+<!-- 📌 Phone Number Row -->
+<div class="phone-wrapper">
+  <select id="countryCode" class="country-select">
+    <option value="+63" selected>+63</option>
+    <option value="+1">+1</option>
+    <option value="+44">+44</option>
+    <option value="+61">+61</option>
+  </select>
+  <input type="tel" id="phoneNumber" placeholder="Phone Number" class="phone-input" maxlength="15" required>
+</div>
+<p id="phoneError" class="error-message">Please enter a valid phone number.</p>
+
+<script>
+const countryCode = document.getElementById("countryCode");
+const phoneInput = document.getElementById("phoneNumber");
+const phoneError = document.getElementById("phoneError");
+
+function validatePhone() {
+  let value = phoneInput.value.trim();
+  let selectedCode = countryCode.value;
+
+  // Remove spaces or dashes from input
+  value = value.replace(/[\s-]/g, "");
+
+  let isValid = false;
+
+  if (selectedCode === "+63") {
+    // PH format: 10 digits (like 9123456789)
+    isValid = /^[0-9]{10}$/.test(value);
+  } else {
+    // Basic validation for other countries: 6-15 digits
+    isValid = /^[0-9]{6,15}$/.test(value);
+  }
+
+  if (!isValid) {
+    phoneInput.classList.add("invalid");
+    phoneError.style.display = "block";
+    return false;
+  } else {
+    phoneInput.classList.remove("invalid");
+    phoneError.style.display = "none";
+    return true;
+  }
+}
+
+// Validate when user leaves field or types
+phoneInput.addEventListener("blur", validatePhone);
+phoneInput.addEventListener("input", validatePhone);
+countryCode.addEventListener("change", validatePhone);
+</script>
+
+
+
+     <!-- Shipping (Dynamic) -->
+    <h2>Shipping</h2>
+    <div id="shippingOptions"><!-- JS will inject available shipping methods + estimated dates here --></div>
+
+
+<h2>Payment</h2>
+<p>How would you like to pay?</p>
+
+<div class="payment-option" data-method="gcash">
+  <input type="radio" name="payment" id="gcash" value="gcash">
+  <label for="gcash">GCash</label>
+  <div class="gcash-dropdown" id="gcashDropdown">
+    <input type="text" placeholder="Enter GCash Number">
+  </div>
+</div>
+
+<div class="payment-option" data-method="cod">
+  <input type="radio" name="payment" id="cod" value="cod">
+  <label for="cod">Cash on Delivery</label>
+</div>
+
+<!-- ✅ Hidden button that will be shown once a payment method is selected -->
+<div id="makePaymentWrapper">
+  <button id="makePaymentBtn">Make Payment</button>
+</div>
+</div>
+
+
+
+  <!-- RIGHT SIDE -->
+  <div class="checkout-right">
+    <h2>Order Summary</h2>
+    <p>Subtotal: <span id="checkoutSubtotal">₱0</span></p>
+    <p>Delivery/Shipping: <span id="checkoutShipping">₱0</span></p>
+    <p id="deliveryEstimate" style="color: #666; font-size: 14px;"></p>
+    <hr>
+    <p><strong>Total: <span id="checkoutTotal">₱0</span></strong></p>
+
+    <div id="checkoutItems"></div>
+  </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // =============================
+  // CART + SHIPPING (your existing logic, unchanged)
+  // =============================
+  const checkoutItems = document.getElementById("checkoutItems");
+  const checkoutSubtotal = document.getElementById("checkoutSubtotal");
+  const checkoutShipping = document.getElementById("checkoutShipping");
+  const checkoutTotal = document.getElementById("checkoutTotal");
+  const deliveryEstimateEl = document.getElementById("deliveryEstimate");
+  const shippingOptionsContainer = document.getElementById("shippingOptions");
+
+  const getCart = () => JSON.parse(localStorage.getItem("cart") || "[]");
+
+  function parsePesoToNumber(pesoText) {
+    if (!pesoText) return 0;
+    const cleaned = String(pesoText).replace(/[^0-9.]/g, "");
+    const parts = cleaned.split(".");
+    const normalized = parts.length > 2 ? parts[0] + "." + parts.slice(1).join("") : cleaned;
+    const n = parseFloat(normalized);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function formatPeso(n) {
+    return `₱${(n || 0).toLocaleString()}`;
+  }
+
+  function renderCheckoutItems() {
+    const cart = getCart();
+    checkoutItems.innerHTML = "";
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("checkout-item");
+      div.innerHTML = `
+        <div class="checkout-item-content">
+          <img src="${item.img}" alt="${item.name}" class="checkout-item-img">
+          <div class="checkout-item-details">
+            <p class="checkout-item-brand">${item.brand}</p>
+            <p class="checkout-item-name">${item.name}</p>
+            <p class="checkout-item-size">Size: ${item.size}</p>
+            <p class="checkout-item-price"><span>${item.price}</span> x ${item.quantity}</p>
+          </div>
+        </div>
+      `;
+      checkoutItems.appendChild(div);
+    });
+
+    updateSummary();
+  }
+
+  function computeSubtotal() {
+    return getCart().reduce((sum, item) => sum + parsePesoToNumber(item.price) * item.quantity, 0);
+  }
+
+  let selectedShippingCost = 0;
+
+  function updateSummary() {
+    const subtotal = computeSubtotal();
+    checkoutSubtotal.textContent = formatPeso(subtotal);
+    checkoutShipping.textContent = formatPeso(selectedShippingCost);
+    checkoutTotal.textContent = formatPeso(subtotal + selectedShippingCost);
+  }
+
+  function formatDatePlusDays(days) {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  }
+
+  function renderShippingOptions() {
+    if (!shippingOptionsContainer) return;
+    shippingOptionsContainer.innerHTML = `
+      <div class="hey" data-method="free">
+        <strong>Free Shipping</strong><br>
+        Arrives ${formatDatePlusDays(5)} - ${formatDatePlusDays(7)}<br>
+        <small>This is an international shipment requiring customs clearance</small>
+      </div>
+      <div class="hey" data-method="express">
+        <strong>Express Shipping</strong><br>
+        Arrives ${formatDatePlusDays(3)}<br>
+        <small>Extra charges may apply for faster delivery</small>
+      </div>
+    `;
+
+    document.querySelectorAll("#shippingOptions .hey").forEach(option => {
+      option.addEventListener("click", () => {
+        document.querySelectorAll("#shippingOptions .hey").forEach(o => o.classList.remove("selected"));
+        option.classList.add("selected");
+
+        const method = option.dataset.method;
+        selectedShippingCost = method === "express" ? 150 : 0;
+        updateSummary();
+
+        if (deliveryEstimateEl) {
+          deliveryEstimateEl.textContent =
+            `Estimated delivery: ${
+              method === "express"
+                ? formatDatePlusDays(3)
+                : `${formatDatePlusDays(5)} - ${formatDatePlusDays(7)}`
+            }`;
+        }
+      });
+    });
+  }
+
+  renderCheckoutItems();
+  renderShippingOptions();
+
+  // =============================
+  // PAYMENT OPTION + GCASH LOGIC
+  // =============================
+  const paymentOptions = document.querySelectorAll(".payment-option");
+  const gcashDropdown = document.getElementById("gcashDropdown");
+  const gcashInput = gcashDropdown ? gcashDropdown.querySelector("input") : null;
+  const makePaymentWrapper = document.getElementById("makePaymentWrapper");
+  const makePaymentBtn = document.getElementById("makePaymentBtn");
+
+  paymentOptions.forEach(option => {
+    option.addEventListener("click", () => {
+      paymentOptions.forEach(o => o.classList.remove("active"));
+      option.classList.add("active");
+
+      if (makePaymentWrapper) makePaymentWrapper.style.display = "block";
+
+      if (gcashDropdown) {
+        gcashDropdown.style.display = option.dataset.method === "gcash" ? "block" : "none";
+      }
+    });
+  });
+
+  if (gcashInput) {
+    gcashInput.addEventListener("input", () => {
+      gcashInput.value = gcashInput.value.replace(/\D/g, "");
+      gcashInput.style.borderColor = gcashInput.value.length !== 11 ? "red" : "#ccc";
+    });
+  }
+
+  // =============================
+  // VALIDATION HOOKS
+  // =============================
+  const emailInput     = document.getElementById("email");
+  const firstNameInput = document.getElementById("firstName");
+  const lastNameInput  = document.getElementById("lastName");
+  const addressInput   = document.getElementById("fullAddress");
+  const zipInput       = document.getElementById("zipCode");
+  const phoneInput     = document.getElementById("phoneNumber");
+  const phoneWrapper   = document.querySelector(".phone-wrapper"); // if you’re using the combined box
+  const countryCodeSel = document.getElementById("countryCode");
+
+  function markInvalid(el, invalid = true) {
+    if (!el) return;
+    // if phone is inside a wrapper, highlight the wrapper
+    if (el === phoneInput && phoneWrapper) {
+      phoneWrapper.classList.toggle("invalid", invalid);
+    } else {
+      el.classList.toggle("invalid", invalid);
+    }
+  }
+
+  function isEmailOk(v)      { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||"").trim()); }
+  function isNonEmpty(v)     { return (v||"").trim().length > 0; }
+  function isAddressOk(v)    { return (v||"").trim().length >= 10; }
+  function isZipOk(v)        { return /^\d{4}$/.test((v||"").trim()); }
+  function isPhoneOk(v)      { return /^\d{6,15}$/.test((v||"").replace(/\D/g,"")); } // generic intl range
+
+  // =============================
+  // MAKE PAYMENT (blocks if invalid)
+  // =============================
+  if (makePaymentBtn) {
+    makePaymentBtn.addEventListener("click", (e) => {
+      // Prevent form submit/navigation until validated
+      e.preventDefault();
+
+      let hasError = false;
+
+      // Validate fields (null-safe checks)
+      const checks = [
+        [emailInput,     emailInput ? isEmailOk(emailInput.value)       : false],
+        [firstNameInput, firstNameInput ? isNonEmpty(firstNameInput.value) : false],
+        [lastNameInput,  lastNameInput ? isNonEmpty(lastNameInput.value)  : false],
+        [addressInput,   addressInput ? isAddressOk(addressInput.value)   : false],
+        [zipInput,       zipInput ? isZipOk(zipInput.value)               : false],
+        [phoneInput,     phoneInput ? isPhoneOk(phoneInput.value)         : false],
+      ];
+
+      checks.forEach(([el, ok]) => {
+        markInvalid(el, !ok);
+        if (!ok) hasError = true;
+      });
+
+      // Shipping selected?
+      const activeShipping = document.querySelector("#shippingOptions .hey.selected");
+      if (!activeShipping) {
+        alert("Please select a shipping option.");
+        hasError = true;
+      }
+
+      // Payment method selected?
+      const activeOption = document.querySelector(".payment-option.active");
+      if (!activeOption) {
+        alert("Please select a payment method.");
+        hasError = true;
+      }
+
+      // If GCash, enforce 11-digit mobile
+      if (activeOption && activeOption.dataset.method === "gcash") {
+        if (!gcashInput || gcashInput.value.replace(/\D/g, "").length !== 11) {
+          if (gcashInput) {
+            gcashInput.style.borderColor = "red";
+            gcashInput.focus();
+          }
+          hasError = true;
+        }
+      }
+
+      if (hasError) return;
+
+      // All good — proceed (you can replace this with your gateway call)
+      alert(`Processing payment with ${activeOption.dataset.method.toUpperCase()}...`);
+    });
+  }
+});
+</script>
+
+<style>
+  .invalid {
+    border: 1px solid red !important;
+    background-color: #ffe6e6 !important;
+  }
+  /* If you’re using the combined phone box */
+  .phone-wrapper.invalid {
+    border: 1px solid red !important;
+    background-color: #ffe6e6 !important;
+  }
+</style>
+
+
+
+<script>
+const paymentOptions = document.querySelectorAll(".payment-option");
+const gcashDropdown = document.getElementById("gcashDropdown");
+const gcashInput = gcashDropdown.querySelector("input");
+
+paymentOptions.forEach(option => {
+  option.addEventListener("click", () => {
+    // remove active class from all
+    paymentOptions.forEach(o => o.classList.remove("active"));
+
+    // activate clicked one
+    option.classList.add("active");
+
+    // toggle GCash dropdown
+    if (option.querySelector("input").value === "gcash") {
+      gcashDropdown.style.display = "block";
+    } else {
+      gcashDropdown.style.display = "none";
+      gcashInput.classList.remove("invalid"); // reset border when hiding
+    }
+  });
+});
+
+// ✅ Live Validation (no alert, just border color)
+gcashInput.addEventListener("input", () => {
+  // remove any non-digit characters
+  gcashInput.value = gcashInput.value.replace(/\D/g, "");
+
+  if (gcashInput.value.length > 11) {
+    gcashInput.classList.add("invalid");
+  } else {
+    gcashInput.classList.remove("invalid");
+  }
+});
+
+// Final check on blur (exactly 11 digits required)
+gcashInput.addEventListener("blur", () => {
+  if (gcashInput.value.length !== 11) {
+    gcashInput.classList.add("invalid");
+  } else {
+    gcashInput.classList.remove("invalid");
+  }
+});
+</script>
+
+
+
+
+<footer class="site-footer">
+  © 2025 Aureva, Inc. All rights reserved
+</footer>
+
+
+
+
+
+</body>
+</html>
